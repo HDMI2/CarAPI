@@ -1,7 +1,17 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+@*<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>*@
+
+@if (TempData.Peek("Engine") == null)
+{
+
+    <h2> " Empty" </h2>
+}
+else
+{
+<h2>@TempData.Peek("Engine")</h2>
+}
 
 <p>Use this area to provide additional information.</p>
