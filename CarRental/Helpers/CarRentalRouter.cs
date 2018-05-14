@@ -19,7 +19,7 @@ namespace CarRental.Helpers
             _routes.MapRoute(
                 name: "default",
                 template: "{controller}/{action}",
-                defaults: new { controller = "Cars", action = "Index" });
+                defaults: new { controller = "Home", action = "Contact" });
 
             //PArams
             _routes.MapRoute(
