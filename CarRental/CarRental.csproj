@@ -13,4 +13,10 @@
     <Folder Include="Views\CarsAsync\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Shared\ErrorCustom.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -62,5 +62,17 @@ namespace CarRental.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult ErrorCustom(int? statusCode)
+        {
+            var error = new ErrorCustomViewModel();
+            if (statusCode==404 || statusCode == 500)
+            {
+                error.Message = statusCode.ToString();
+            }
+
+            return View("ErrorCustom",error);
+        }
+
     }
 }

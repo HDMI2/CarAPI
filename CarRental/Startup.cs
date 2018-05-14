@@ -59,8 +59,11 @@ namespace CarRental
                 app.UseExceptionHandler("/Home/Error");
 
                 //2. Status CodePages
-                app.UseStatusCodePages();
-                
+                // app.UseStatusCodePages();
+
+
+                //3. Custom Error Page for Statuscode
+                app.UseStatusCodePagesWithReExecute("/Home/ErrorCustom", "?StatusCode={0}");
                 
                 // app.UseHsts();
             }
