@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -11,11 +12,13 @@ namespace CarRental.Models
     {
         public int Id { get; set; }
 
+        //[BindNever]
         [DisplayName("Baujahr")]
         [Range(1900,2018)]
         [Required]
         public int YearOfConstruction { get; set; }
 
+        //[FromQuery]
         [DisplayName("Marken Name")]
         [Required]
         public string BrandName { get; set; }
