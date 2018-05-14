@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CarRental.Filters;
 using CarRental.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -68,19 +69,19 @@ namespace CarRental.Controllers
             return View(car);
         }
 
-
+        [CustomExceptionFilter]
         public IActionResult Index()
         {
-            try
+            //try
             {
                 throw new Exception("Computer says NO");
             }
-            catch (Exception)
+            //catch (Exception)
             {
                 return new StatusCodeResult(500);
             }
 
-            return View(_carRentalDBContext.CarSet.ToList());
+            //return View(_carRentalDBContext.CarSet.ToList());
         }
 
     }
