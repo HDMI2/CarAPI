@@ -28,7 +28,8 @@ namespace CarRental
         public void ConfigureServices(IServiceCollection services)
         {
             //In Memory DB
-            services.AddDbContext<CarRentalDBContext>(options => {
+            services.AddDbContext<CarRentalDBContext>(options =>
+            {
                 options.UseInMemoryDatabase("CarRental");
             });
 
@@ -42,7 +43,7 @@ namespace CarRental
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddSessionStateTempDataProvider() ;
+                .AddSessionStateTempDataProvider();
             services.AddSession();
         }
 
@@ -64,7 +65,7 @@ namespace CarRental
 
                 //3. Custom Error Page for Statuscode
                 app.UseStatusCodePagesWithReExecute("/Home/ErrorCustom", "?StatusCode={0}");
-                
+
                 // app.UseHsts();
             }
 
@@ -73,14 +74,37 @@ namespace CarRental
             app.UseCookiePolicy();
             app.UseSession();
 
-            app.UseMvcWithDefaultRoute();
-            //def. MvcWithDefaultRoute
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}");
-            //});
+            //1.default MvcWithDefaultRoute
+            //app.UseMvcWithDefaultRoute();
+
+            //2.
+
+
+            app.UseMvc(routes =>
+            {
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}",
+                    defaults: new { controller = "Cars", action = "Index" });
+
+                //PArams
+                routes.MapRoute(
+                    name: "carRoute",
+                    template: "{controller}/{id?}/{action}/",
+                    defaults: new { controller = "Cars", action = "Index" });
+
+                //constrains
+                routes.MapRoute(
+                  name: "carRoute1",
+                  template: "{controller}/{id:alpha}/{action}/",
+                  defaults: new { controller = "Cars", action = "Test" });
+
+
+            });
+
+
+
         }
     }
 }

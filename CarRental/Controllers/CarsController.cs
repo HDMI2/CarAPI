@@ -69,19 +69,24 @@ namespace CarRental.Controllers
             return View(car);
         }
 
+        public IActionResult Test(int? id)
+        {
+            return Content(id.ToString());
+        }
+
         [CustomExceptionFilter]
         public IActionResult Index()
         {
-            //try
+            try
             {
-                throw new Exception("Computer says NO");
+                return View(_carRentalDBContext.CarSet.ToList());
+
             }
-            //catch (Exception)
+            catch (Exception)
             {
                 return new StatusCodeResult(500);
             }
 
-            //return View(_carRentalDBContext.CarSet.ToList());
         }
 
     }
