@@ -78,31 +78,7 @@ namespace CarRental
             //app.UseMvcWithDefaultRoute();
 
             //2.
-
-
-            app.UseMvc(routes =>
-            {
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action}",
-                    defaults: new { controller = "Cars", action = "Index" });
-
-                //PArams
-                routes.MapRoute(
-                    name: "carRoute",
-                    template: "{controller}/{id?}/{action}/",
-                    defaults: new { controller = "Cars", action = "Index" });
-
-                //constrains
-                routes.MapRoute(
-                  name: "carRoute1",
-                  template: "{controller}/{id:alpha}/{action}/",
-                  defaults: new { controller = "Cars", action = "Test" });
-
-
-            });
-
+            app.UseMvcWithDefaultRoute();
 
 
         }
