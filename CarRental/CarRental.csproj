@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RazorClassLib1\RazorClassLib1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Views\Shared\ErrorCustom.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

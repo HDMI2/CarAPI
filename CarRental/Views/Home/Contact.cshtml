@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
+@tagHelperPrefix email
+
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
@@ -12,10 +14,15 @@ Html Link:
 <br />
 
 Html Helper:
-@Html.ActionLink("About Helper","/About")
+@Html.ActionLink("About Helper", "/About")
 
 <br />
 <a asp-action="About" aps-controller="Home"> About Siete</a>
 
 <br />
-Tag Helper: <email mail-to="Markteting">Test</email>
+'email' Tag Helper: <email mail-to="Markteting">Test</email>
+
+<address>
+    <strong>Support:</strong><email>Support</email><br />
+    <strong>Marketing:</strong><email>Marketing</email>
+</address>

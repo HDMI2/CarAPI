@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace CarRental.TagHelpers
 {
-    public class EmailTagHelper: TagHelper
+    public class EmailTagHelper : TagHelper
     {
-        const string Domain  ="ppedv.de";
-        public string MailTo { get; set; } ="support";
-
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        private const string EmailDomain = "contoso.com";
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            var address = MailTo +  "@" + Domain;
-            output.TagName = "a";
-            output.Attributes.SetAttribute("href", "mailto:" + address);
-            output.Content.SetContent ("Kontaktieren Sie ...");
-            //base.Process(context, output);
+            output.TagName = "a";                                 // Replaces <email> with <a> tag
+            var content = await output.GetChildContentAsync();
+            var target = content.GetContent() + "@" + EmailDomain;
+            output.Attributes.SetAttribute("href", "mailto:" + target);
+            output.Content.SetContent(target);
         }
     }
 }
