@@ -32,3 +32,4 @@ d:\Projekte\Workshop\ppedv\CarRental\CarRental\obj\Debug\netcoreapp2.1\CarRental
 D:\Projekte\Workshop\ppedv\CarRental\CarRental\obj\Debug\netcoreapp2.1\Razor\Views\Cars\Index.g.cshtml.cs
 D:\Projekte\Workshop\ppedv\CarRental\CarRental\obj\Debug\netcoreapp2.1\Razor\Views\Cars\Create.g.cshtml.cs
 D:\Projekte\Workshop\ppedv\CarRental\CarRental\obj\Debug\netcoreapp2.1\Razor\Views\Cars\Details.g.cshtml.cs
+D:\Projekte\Workshop\ppedv\CarRental\CarRental\obj\Debug\netcoreapp2.1\Razor\Views\CarsAsync\Create.g.cshtml.cs

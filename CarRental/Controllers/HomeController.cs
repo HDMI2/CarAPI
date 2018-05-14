@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CarRental.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace CarRental.Controllers
 {
@@ -12,7 +13,28 @@ namespace CarRental.Controllers
     {
         public IActionResult Index()
         {
+            SetCookie("Car", "Düsseldorf 2018", 5);
+
             return View();
+        }
+
+        private void SetCookie(string key, string value, int? expireTime)
+        {
+            var options = new CookieOptions();
+            if (expireTime.HasValue)
+            {
+                options.Expires = DateTime.Now.AddMinutes(expireTime.Value);
+            }
+            else
+            {
+                options.Expires = DateTime.Now.AddMilliseconds(10);
+
+            }
+
+          //  var keks = Response.Cookies["Car"];
+            Response.Cookies.Delete("Car");
+
+            Response.Cookies.Append(key, value, options);
         }
 
         public IActionResult About()
