@@ -14,6 +14,7 @@ namespace CarRental
 {
     public class Startup
     {
+        //demo
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -52,12 +53,14 @@ namespace CarRental
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
+            //def. MvcWithDefaultRoute
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }
