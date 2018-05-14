@@ -55,8 +55,14 @@ namespace CarRental
             }
             else
             {
+                //1.General Exception
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+
+                //2. Status CodePages
+                app.UseStatusCodePages();
+                
+                
+                // app.UseHsts();
             }
 
             app.UseHttpsRedirection();

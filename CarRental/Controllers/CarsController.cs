@@ -71,6 +71,15 @@ namespace CarRental.Controllers
 
         public IActionResult Index()
         {
+            try
+            {
+                throw new Exception("Computer says NO");
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(500);
+            }
+
             return View(_carRentalDBContext.CarSet.ToList());
         }
 

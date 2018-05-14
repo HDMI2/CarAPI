@@ -27,6 +27,12 @@ namespace CarRental.Controllers
             }
         }
 
+        public IActionResult Index()
+        {
+            throw new Exception("Computer says NO");
+            return View(_carRentalDBContext.CarSet.ToList());
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -35,30 +41,30 @@ namespace CarRental.Controllers
 
 
         [HttpPost]
-    [ValidateAntiForgeryToken] //wird Formular vom selben Client geschickt
-    public async Task<IActionResult> Create(Car car)
-    {
-        if (ModelState.IsValid)
+        [ValidateAntiForgeryToken] //wird Formular vom selben Client geschickt
+        public async Task<IActionResult> Create(Car car)
         {
-            await _carRentalDBContext.AddAsync(car);
-            _carRentalDBContext.SaveChanges();
-          return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                await _carRentalDBContext.AddAsync(car);
+                _carRentalDBContext.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
         }
 
-        return View();
-    }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+
+            if (id == null) return NotFound();
+            Car car = await _carRentalDBContext.CarSet.FirstOrDefaultAsync(c => c.Id == id);
+            if (car == null) return NotFound();
 
 
-    public async Task<IActionResult> Details(int? id)
-    {
-
-        if (id == null) return NotFound();
-        Car car = await _carRentalDBContext.CarSet.FirstOrDefaultAsync(c => c.Id == id);
-        if (car == null) return NotFound();
-
-
-        return View(car);
-    }
+            return View(car);
+        }
     }
 
 }
