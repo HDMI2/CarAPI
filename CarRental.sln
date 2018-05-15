@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental", "CarRental\CarR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorClassLib1", "RazorClassLib1\RazorClassLib1.csproj", "{1B864B3F-FD38-42E2-AC76-C2E6A48214EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDemo", "CoreDemo\CoreDemo.csproj", "{61377DCE-AC56-4CBF-B7CB-F6ECBEFFE188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDemo", "CoreDemo\CoreDemo.csproj", "{61377DCE-AC56-4CBF-B7CB-F6ECBEFFE188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Api", "Training.Api\Training.Api.csproj", "{36A3DDF8-2FE2-4BC2-B04B-94018344F63B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Training.Api", "Training.Api\Training.Api.csproj", "{36A3DDF8-2FE2-4BC2-B04B-94018344F63B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

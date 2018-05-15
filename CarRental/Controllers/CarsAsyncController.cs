@@ -29,7 +29,7 @@ namespace CarRental.Controllers
 
         public IActionResult Index()
         {
-            throw new Exception("Computer says NO");
+           // throw new Exception("Computer says NO");
             return View(_carRentalDBContext.CarSet.ToList());
         }
 
