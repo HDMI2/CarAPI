@@ -20,6 +20,11 @@ namespace Training.Api.Controllers
         public CarsController(CarAPIContext ctx)
         {
             _ctx = ctx;
+            InitCarList();
+        }
+
+        private void InitCarList()
+        {
             if (_ctx.CarSet.Count() == 0)
             {
                 _ctx.CarSet.Add(new Car { Id = 1, BrandName = BrandNames.DMC, ModelName = "Delorian", YearOfConstruction = 1975 });
