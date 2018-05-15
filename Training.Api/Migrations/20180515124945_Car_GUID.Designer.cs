@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Training.Api.Models;
 
 namespace Training.Api.Migrations
 {
     [DbContext(typeof(CarAPIContext))]
-    partial class CarAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20180515124945_Car_GUID")]
+    partial class Car_GUID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

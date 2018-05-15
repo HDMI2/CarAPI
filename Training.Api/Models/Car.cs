@@ -21,6 +21,8 @@ namespace Training.Api.Models
 
         [Range(1900,2018)]
         public int YearOfConstruction { get; set; }
+
+        public Guid IDNummer { get; set; }
     }
 
 }
