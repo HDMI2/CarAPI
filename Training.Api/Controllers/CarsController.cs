@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Training.Api.Models;
+using Training.Api.Services;
 
 namespace Training.Api.Controllers
 {
@@ -16,21 +17,17 @@ namespace Training.Api.Controllers
     public class CarsController : Controller
     {
         private readonly CarAPIContext _ctx;
+        private CarRepository _carRepository;
 
-        public CarsController(CarAPIContext ctx)
+        public CarsController(CarRepository  carRepository)
         {
-            _ctx = ctx;
-            InitCarList();
+            _carRepository = carRepository;
         }
 
-        private void InitCarList()
-        {
-            if (_ctx.CarSet.Count() == 0)
-            {
-                _ctx.CarSet.Add(new Car { Id = 1, BrandName = BrandNames.DMC, ModelName = "Delorian", YearOfConstruction = 1975 });
-                _ctx.SaveChanges();
-            }
-        }
+        //public CarsController(CarAPIContext ctx)
+        //{
+        //    _ctx = ctx;
+        //}
 
         [HttpGet]
         public async Task<IEnumerable<Car>> GetAllCars()
@@ -38,7 +35,7 @@ namespace Training.Api.Controllers
             //var cars = await _ctx.CarSet.ToListAsync();
             //return Ok(cars);
 
-            return await _ctx.CarSet.ToListAsync();
+            return await _carRepository.GetAll() ;
 
         }
 

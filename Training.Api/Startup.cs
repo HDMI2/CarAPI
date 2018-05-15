@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Training.Api.Models;
+using Training.Api.Services;
 
 namespace Training.Api
 {
@@ -31,6 +32,10 @@ namespace Training.Api
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            //IoC Service
+
+            services.AddScoped<ICarRepository,CarRepository>(); //nach jedem HTTP Request eine neue Instanz erstellen
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
