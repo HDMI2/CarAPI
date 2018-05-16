@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarWebApi", "CarWebApi\CarW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiIdent", "WebApiIdent\WebApiIdent.csproj", "{D5BAD622-10AA-49D4-842D-2D57BB6B0E55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiSignalR", "WebApiSignalR\WebApiSignalR.csproj", "{13641825-B84B-4DA1-8C0B-9CB4A8372B2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D5BAD622-10AA-49D4-842D-2D57BB6B0E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5BAD622-10AA-49D4-842D-2D57BB6B0E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5BAD622-10AA-49D4-842D-2D57BB6B0E55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13641825-B84B-4DA1-8C0B-9CB4A8372B2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13641825-B84B-4DA1-8C0B-9CB4A8372B2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13641825-B84B-4DA1-8C0B-9CB4A8372B2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13641825-B84B-4DA1-8C0B-9CB4A8372B2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
