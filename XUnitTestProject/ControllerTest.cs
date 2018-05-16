@@ -1,6 +1,7 @@
 using CarWebApi.Models;
 using CarWebApi.Services;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace XUnitTestProject
@@ -9,18 +10,31 @@ namespace XUnitTestProject
     {
 
         [Fact]
-        public async void Car_Get_AllAsync()
+        public async void Car_GetAll()
         {
             //https://asp.net-hacker.rocks/2017/09/27/testing-aspnetcore.html
 
             CarRepository carRepository = new CarRepository();
             var controller = new CarWebApi.Controllers.CarController(carRepository);
             var result = await controller.GetAllCars();
+        }
 
-            //var okResult = result.Should().BeOfType<IEnumerable<Car>>().Subject;
-            //var persons = okResult.Value.Should().BeAssignableTo<IEnumerable<Car>>().Subject;
+        [Fact]
+        public async void Car_Delete_Last()
+        {
+            //https://asp.net-hacker.rocks/2017/09/27/testing-aspnetcore.html
 
-            //persons.Count().Should().Be(50);
+            CarRepository carRepository = new CarRepository();
+            var controller = new CarWebApi.Controllers.CarController(carRepository);
+            List<Car> cars = await controller.GetAllCars() as List<Car>;
+
+            Assert.NotEmpty(cars);
+
+            int id = (from c in cars
+                      //where c.Id > 100000
+                     select c).Max(c => c.Id);
+            var result = await controller.Delete(id);
+            await carRepository.SaveAll();
         }
 
         [Fact]
