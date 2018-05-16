@@ -20,17 +20,29 @@ namespace Training.Api.Controllers
     {
         private ICarRepository _carRepository;
         private IMapper _autoMapper;
+        private GitHubClient _gitHubClient;
 
-        public CarsController(ICarRepository carRepository, IMapper autoMapper)
+        public CarsController(ICarRepository carRepository, IMapper autoMapper, GitHubClient gitHubClient)
         {
             _carRepository = carRepository;
             _autoMapper = autoMapper;
+            _gitHubClient = gitHubClient;
         }
 
         //public CarsController(CarAPIContext ctx)
         //{
         //    _ctx = ctx;
         //}
+
+
+
+        [HttpGet]
+        [Route("ManufacturerFromGitHub")]
+        public async Task<IActionResult> GetManufacturerFromGitHub()
+        {
+            var result = await _gitHubClient.Client.GetStringAsync("/");
+            return Ok(result);
+        }
 
         [HttpGet]
         public async Task<IEnumerable<Car>> GetAllCars()

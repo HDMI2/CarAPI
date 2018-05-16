@@ -39,6 +39,16 @@ namespace Training.Api
             //Automapper
             services.AddAutoMapper();
 
+
+            //HttpClient Factory
+            services.AddHttpClient<GitHubClient>(client =>
+            {
+                client.BaseAddress = new Uri("http://api.github.de");
+                client.DefaultRequestHeaders.Add("Accept", "application/vnd,guthub.vs+json");
+                client.DefaultRequestHeaders.Add("User-Agent", "Testing.API");
+            }
+            );
+
             //IoC Service
 
             services.AddScoped<ICarRepository,CarRepository>(); //nach jedem HTTP Request eine neue Instanz erstellen
