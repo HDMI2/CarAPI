@@ -40,6 +40,8 @@ namespace CarRental
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //CORS
+            services.AddCors();
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
@@ -68,6 +70,15 @@ namespace CarRental
 
                 // app.UseHsts();
             }
+
+
+            //CORS erlauben
+            //app.UseCors("Eigene Policy")
+            app.UseCors(x => x.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin()
+                .AllowCredentials()
+                );
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
