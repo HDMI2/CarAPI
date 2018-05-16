@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Training.Api.Models;
 using Training.Api.Services;
+using AutoMapper;
 
 namespace Training.Api
 {
@@ -28,10 +29,15 @@ namespace Training.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<CarAPIContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+
+            //Automapper
+            services.AddAutoMapper();
 
             //IoC Service
 

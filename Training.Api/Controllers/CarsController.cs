@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Training.Api.Dtos;
 using Training.Api.Models;
 using Training.Api.Services;
 
@@ -17,10 +19,12 @@ namespace Training.Api.Controllers
     public class CarsController : Controller
     {
         private ICarRepository _carRepository;
+        private IMapper _autoMapper;
 
-        public CarsController(ICarRepository  carRepository)
+        public CarsController(ICarRepository carRepository, IMapper autoMapper)
         {
             _carRepository = carRepository;
+            _autoMapper = autoMapper;
         }
 
         //public CarsController(CarAPIContext ctx)
@@ -33,16 +37,17 @@ namespace Training.Api.Controllers
         {
             //var cars = await _ctx.CarSet.ToListAsync();
             //return Ok(cars);
-           
-            return await _carRepository.GetAll() ;
 
+            var cars = await _carRepository.GetAll();
+            var carsDtos = _autoMapper.Map<IList<CarDto>>(cars);
+            return (cars);
         }
 
         [HttpGet("{id}", Name = "GetCar")]
         public async Task<ActionResult<Car>> GetCar(int id)
         {
 
-            return await _carRepository.FindByIdAsync(id);            
+            return await _carRepository.FindByIdAsync(id);
 
         }
 
@@ -50,7 +55,7 @@ namespace Training.Api.Controllers
         public async Task<ActionResult<Car>> Post([FromBody] Car car)
         {
 
-            var res =await _carRepository.Update(car);
+            var res = await _carRepository.Update(car);
 
             return CreatedAtRoute("GetCar", new { id = car.Id }, car);
         }
