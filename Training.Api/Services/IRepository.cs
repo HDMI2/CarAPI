@@ -13,15 +13,16 @@ namespace Training.Api.Services
 
         void Add(T entity);
         void Remove(T entity);
+        Task<bool> Update(T entity);
 
-        Task<bool> SavaAll(T entity);
+        Task<bool> SaveAll(T entity);
 
     }
 
     public interface ICarRepository: IRepository<Car>
     {
         Task<IEnumerable<Car>> GetCarsWithDiscount();
-
+        Task SaveAll();
     }
 
 }

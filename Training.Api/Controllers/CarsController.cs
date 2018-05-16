@@ -16,10 +16,9 @@ namespace Training.Api.Controllers
     [ApiController]
     public class CarsController : Controller
     {
-        private readonly CarAPIContext _ctx;
-        private CarRepository _carRepository;
+        private ICarRepository _carRepository;
 
-        public CarsController(CarRepository  carRepository)
+        public CarsController(ICarRepository  carRepository)
         {
             _carRepository = carRepository;
         }
@@ -34,7 +33,7 @@ namespace Training.Api.Controllers
         {
             //var cars = await _ctx.CarSet.ToListAsync();
             //return Ok(cars);
-
+           
             return await _carRepository.GetAll() ;
 
         }
@@ -43,22 +42,15 @@ namespace Training.Api.Controllers
         public async Task<ActionResult<Car>> GetCar(int id)
         {
 
-            var car = await _ctx.CarSet.FirstOrDefaultAsync(c => c.Id == id);
-
-            if (car == null)
-            {
-                return NotFound();
-            }
-            return car;
+            return await _carRepository.FindByIdAsync(id);            
 
         }
 
         [HttpPost]
         public async Task<ActionResult<Car>> Post([FromBody] Car car)
         {
-            if (car == null) return BadRequest();
-            await _ctx.CarSet.AddAsync(car);
-            await _ctx.SaveChangesAsync();
+
+            var res =await _carRepository.Update(car);
 
             return CreatedAtRoute("GetCar", new { id = car.Id }, car);
         }
@@ -67,33 +59,23 @@ namespace Training.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            Car car = await _ctx.GetCar(id);
-            if (car?.Id > 0)
-            {
-                _ctx.CarSet.Remove(car);
-                await _ctx.SaveChangesAsync();
-            }
+            var car = await _carRepository.FindByIdAsync(id);
+            _carRepository.Remove(car);
+
             return new NoContentResult();
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, [FromBody] Car car)
         {
+
             if (car.Id != id)
             {
                 return BadRequest();
 
             }
 
-            var carToUpdate = await _ctx.GetCar(id);
-
-            if (carToUpdate != null)
-            {
-                carToUpdate.ModelName = car.ModelName;
-                carToUpdate.BrandName = car.BrandName;
-                carToUpdate.YearOfConstruction = car.YearOfConstruction;
-                await _ctx.SaveChangesAsync();
-            }
+            await _carRepository.Update(car);
             return new NoContentResult();
         }
 
@@ -101,7 +83,7 @@ namespace Training.Api.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult<Car>> Patch(int id, [FromBody] JsonPatchDocument<Car> patch)
         {
-            var car = await _ctx.GetCar(id);
+            var car = await _carRepository.FindByIdAsync(id);
             if (car == null)
             {
                 return NotFound();
@@ -113,7 +95,7 @@ namespace Training.Api.Controllers
             {
                 return BadRequest();
             }
-            _ctx.SaveChanges();
+            await _carRepository.SaveAll();
             return car;
         }
 

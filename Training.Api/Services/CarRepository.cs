@@ -43,9 +43,24 @@ namespace Training.Api.Services
             _context.CarSet.Remove(entity);
         }
 
-        public async Task<bool> SavaAll(Car entity)
+        public async Task<bool> SaveAll(Car entity)
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task SaveAll()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> Update(Car entity)
+        {
+            if (entity == null) return false;
+            await _context.CarSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }
