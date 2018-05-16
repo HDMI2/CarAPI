@@ -12,22 +12,9 @@ namespace XUnitTestProject
         public async void Car_Get_AllAsync()
         {
             //https://asp.net-hacker.rocks/2017/09/27/testing-aspnetcore.html
-            // Arrange
 
-            //var builder = new ConfigurationBuilder()
-            //.SetBasePath(Directory.GetCurrentDirectory())
-            //.AddJsonFile("appsettings.json");
-
-            //DbContextOptions dbContextOptions = new
-
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            //;
-            //CarAPIContext ctx = new CarAPIContext(dbContextOptions);
-            CarAPIContext context = new CarAPIContext();
-            CarRepository carRepository = new CarRepository(context);
+            CarRepository carRepository = new CarRepository();
             var controller = new CarWebApi.Controllers.CarController(carRepository);
-
-            //// Act
             var result = await controller.GetAllCars();
 
             //var okResult = result.Should().BeOfType<IEnumerable<Car>>().Subject;
@@ -36,6 +23,18 @@ namespace XUnitTestProject
             //persons.Count().Should().Be(50);
         }
 
+        [Fact]
+        public async void Car_Post()
+        {
+            //https://asp.net-hacker.rocks/2017/09/27/testing-aspnetcore.html
+
+            CarRepository carRepository = new CarRepository();
+            var controller = new CarWebApi.Controllers.CarController(carRepository);
+            Car car = new Car() { ModelName = "Name", YearOfConstruction = 2000, BrandName = BrandNames.BMW };
+            var result = await controller.Post(car);
+
+
+        }
     }
 
 }

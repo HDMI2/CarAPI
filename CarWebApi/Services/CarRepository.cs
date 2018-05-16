@@ -11,6 +11,12 @@ namespace CarWebApi.Services
     {
         private CarAPIContext _context;
 
+        public CarRepository()
+        {
+            _context= new CarAPIContext();
+        }
+
+
         public CarRepository(CarAPIContext context)
         {
             _context = context;
