@@ -25,8 +25,17 @@ namespace CarWebApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<Car>> GetAllCars()
         {
-            var cars = await _carRepository.GetAll();
-            return (cars);
+            try
+            {
+                var cars = await _carRepository.GetAll();
+                return (cars);
+
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
         }
         // GET: api/Car/5
         [HttpGet("{id}", Name = "Get")]
