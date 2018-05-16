@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,20 +12,20 @@ namespace CarWebApi.Models
     {
 
 
-        public class AutoMapperProfiles : Profile
-        {
-            public AutoMapperProfiles()
-            {
-                CreateMap<Car, CarDto>()
-                .ForMember(dest => dest.FullLabel,
-                        opt => opt.MapFrom(src => src.ModelName + " " + src.BrandName.ToString()))
-                .ForMember(dest => dest.Age,
-                        opt => opt.ResolveUsing(src => src.YearOfConstruction.CalculateAge())
-                );
-            }
+        //public class AutoMapperProfiles : Profile
+        //{
+        //    public AutoMapperProfiles()
+        //    {
+        //        CreateMap<Car, CarDto>()
+        //        .ForMember(dest => dest.FullLabel,
+        //                opt => opt.MapFrom(src => src.ModelName + " " + src.BrandName.ToString()))
+        //        .ForMember(dest => dest.Age,
+        //                opt => opt.ResolveUsing(src => src.YearOfConstruction.CalculateAge())
+        //        );
+        //    }
 
 
-        }
+        //}
 
 
         public static string GetEnumDescription(Enum value)

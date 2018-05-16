@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Training.Api.Dtos
+namespace CarWebApi.Dtos
 {
     public class CarDto
     {

@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace Training.Api
+namespace CarWebApi
 {
     public class GitHubClient
     {

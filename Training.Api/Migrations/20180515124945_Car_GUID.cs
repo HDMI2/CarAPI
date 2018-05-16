@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Training.Api.Migrations
+namespace CarWebApi.Migrations
 {
     public partial class Car_GUID : Migration
     {

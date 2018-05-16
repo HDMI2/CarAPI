@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Training.Api.Migrations
+namespace CarWebApi.Migrations
 {
     public partial class init : Migration
     {

@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Training.Api.Models;
+using CarWebApi.Models;
 
-namespace Training.Api.Migrations
+namespace CarWebApi.Migrations
 {
     [DbContext(typeof(CarAPIContext))]
     [Migration("20180515124945_Car_GUID")]
@@ -21,7 +21,7 @@ namespace Training.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Training.Api.Models.Car", b =>
+            modelBuilder.Entity("CarWebApi.Models.Car", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

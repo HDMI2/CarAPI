@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Training.Api.Dtos;
-using Training.Api.Models;
-using Training.Api.Services;
+using CarWebApi.Dtos;
+using CarWebApi.Models;
+using CarWebApi.Services;
 
-namespace Training.Api.Controllers
+namespace CarWebApi.Controllers
 {
     //[Produces("application/json")]
     [Route("api/[controller]")]

@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using CarWebApi.Models;
-using CarWebApi.Services;
-using AutoMapper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace CarWebApi
 {
@@ -32,7 +28,6 @@ namespace CarWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             //Security JWT
             // JWT Security
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -52,31 +47,10 @@ namespace CarWebApi
                     };
                 });
 
-
-            services.AddDbContext<CarAPIContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
-
-
-            //Automapper
-            services.AddAutoMapper();
-
-
-            //HttpClient Factory
-            //services.AddHttpClient<GitHubClient>(client =>
-            //{
-            //    client.BaseAddress = new Uri(@"https://api.github.de");
-            //    client.DefaultRequestHeaders.Add("Accept", "application/vnd,guthub.vs+json");
-            //    client.DefaultRequestHeaders.Add("User-Agent", "Testing.API");
-            //}
-            //);
-
-            //IoC Service
-
-            services.AddScoped<ICarRepository, CarRepository>(); //nach jedem HTTP Request eine neue Instanz erstellen
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,10 +63,34 @@ namespace CarWebApi
             else
             {
                 app.UseHsts();
+                //Todo Security
+                //app.UseForwardedHeaders ....
             }
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            //CORS erlauben
+            //app.UseCors("Eigene Policy")
+            app.UseCors(x => x.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin()
+                .AllowCredentials()
+                );
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            //app.UseCookiePolicy();
+           // app.UseSession();
+
+            //1.default MvcWithDefaultRoute
+            //app.UseMvcWithDefaultRoute();
+
+            //2.
+            app.UseMvcWithDefaultRoute();
+
+            //app.UseAuthentication(); //JWT
+
         }
     }
 }
