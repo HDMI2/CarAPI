@@ -59,7 +59,7 @@ namespace WebApiSignalR
 
             app.UseSignalR(routes =>
            {
-               routes.MapHub<ChatHub>("/hubs/path");
+               routes.MapHub<ChatHub>("/hubs/chat");
            });
         }
     }
