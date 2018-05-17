@@ -10,12 +10,16 @@ function appendMessage(content) {
     messagesList.appendChild(li);
 }
 
-var connection = new signalR.HubConnection("/hubs/chat");
+//var connection = new signalR.HubConnection("/hubs/chat")
+var connection = new signalR.HubConnectionBuilder()
+    .withUrl('/hubs/chat')
+    .build();
 
 sendForm.addEventListener("submit", function () {
     var message = messageTextBox.value;
     messageTextBox.value = "";
     connection.send("Send", message);
+    evt.preventDefault();
 });
 
 connection.on("SendMessage", function (sender, message) {
